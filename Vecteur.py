@@ -2,8 +2,12 @@ import numpy as np
 
 
 class Vecteur:
-    def __init__(self,x,y,z):
-        self.vector = np.array([x,y,z])
+    def __init__(self,origin,extremite): #x,y,z coords
+        self.origin = origin 
+        self.extremite = extremite
+        self.vector = np.array([extremite[0]-origin[0],
+                                [extremite[1]-origin[1],
+                                [extremite[2]-origin[2]])
 
     def addition(self,vector1):
         return np.add(self.vector,vector1.vector)
@@ -24,8 +28,6 @@ class Vecteur:
         return np.linalg.norm(self.vector)
 
     def normalization(self):
-        return
-
-vect= Vecteur(1,2,3)
-vect2= Vecteur(3,5,9)
-print(vect.prod_scalaire(vect2))
+        norm = self.norme()
+        x_n, y_n, z_n = self.vector[0] / norm,self.vector[1] / norm,self.vector[2] / norm
+        return Vecteur(x_n,y_n,z_n)
