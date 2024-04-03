@@ -10,7 +10,7 @@ class Objet:
         self.fdr = fdr #facteur de réflexion (reflets)
         self.shadow = shadow
 
-    def intersection(self):
+    def intersection(self,droite,camera):
         pass
-    def normale(self)
+    def normale(self):
         pass

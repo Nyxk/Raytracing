@@ -5,9 +5,7 @@ class Vecteur:
     def __init__(self,origin,extremite): #x,y,z coords
         self.origin = origin 
         self.extremite = extremite
-        self.vector = np.array([extremite[0]-origin[0],
-                                [extremite[1]-origin[1],
-                                [extremite[2]-origin[2]])
+        self.vector = np.array([extremite[0]-origin[0],extremite[1]-origin[1],extremite[2]-origin[2]])
 
     def addition(self,vector1):
         return np.add(self.vector,vector1.vector)
