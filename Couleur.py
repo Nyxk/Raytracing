@@ -7,6 +7,7 @@ class Couleur:
         self.g = g
         self.b = b
 
+
     def sum(self,col):
         self.r += col.r
         self.g += col.g
