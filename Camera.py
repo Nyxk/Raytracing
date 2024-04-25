@@ -1,5 +1,5 @@
-
-
+from Vecteur import Vecteur
+import numpy as np
 
 
 
@@ -8,23 +8,15 @@ class Camera:
         self.largeur=largeur
         self.hauteur=hauteur
         self.position=position
-        self.direction=direction
-        self.orientation=orientation
+        v1=Vecteur(self.position,direction)
+        self.direction=v1.normalization() #VVect
+        v2=Vecteur((0,0,0),(0,1,0))
+        self.orientation=v2.normalization() #Hvect
+        self.Dvect=self.direction.prod_vectoriel(self.orientation)
         self.df=df
 
-    def rayon(self,x,y):
-        ar= self.largeur/self.hauteur
-        vw= 2*ar
-        vwh=2
-        x_normalized = (x - 0.5) * vw
-        y_normalized = (y - 0.5) * vwh
-        right = self.orientation.cross(self.direction).normalize()
-        up = self.direction.cross(right).normalize()
-        direction = (self.direction +
-                     right * x_normalized +
-                     up * y_normalized).normalize()
+    def ray(self,obj_pos):
+        ray_vect= Vecteur(self.position,obj_pos)
+        return ray_vect.normalization()
 
-        # Calcul de l'origine du rayon
-        origin = self.position
 
-        return origin, direction
