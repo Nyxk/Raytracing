@@ -1,16 +1,24 @@
-import numpy as np
+
+from couleur import Couleur
+from droite import Droite
+from point import Point
+from vecteur import Vecteur
 
 
 class Objet:
-    def __init__(self,position,color,frd,frs,fdr,shadow):
-        self.position =position 
-        self.color = color
-        self.frd = frd #facteur de réflexion diffus
-        self.frs = frs #facteur de réflexion spéculaire
-        self.fdr = fdr #facteur de réflexion (reflets)
-        self.shadow = shadow
+    def __init__(self, pos:Point, clr:Couleur, amb=0.1, diff=0, spec=0, refl=0, shad=0):
+        self.position = pos
+        self.color = clr
+        self.ambient = amb
+        self.diffuse = diff
+        self.specular = spec
+        self.reflect = refl
+        self.shadow = shad
+    
+    def intersection(self, d:Droite) -> Point:
+        pass
 
-    def intersection(self,droite,camera):
+    def normalVect(self, p:Point) -> Vecteur:
         pass
-    def normale(self):
-        pass
+
+    

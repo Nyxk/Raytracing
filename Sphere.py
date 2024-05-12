@@ -1,55 +1,48 @@
-from Couleur import Couleur
-from Objet import Objet 
+import math as m
 import numpy as np
-from Vecteur import Vecteur
-from Camera import Camera
-from Ray import Ray
-
-class Sphere(Objet):
-    def __init__(self,position,color,frd,frs,fdr,shadow,rayon):
-        super().__init__(position,color,frd,frs,fdr,shadow)
-        self.rayon = rayon
+from couleur import Couleur
+from droite import Droite
+from objet import Objet
+from point import Point
+from vecteur import Vecteur, dotprod
 
 
-    def intersection(self, ray:Ray):
-        oc = Vecteur(ray.origin,self.position)
-        ac=oc.vector
-        A = 1
-        B = 2.0 * (np.dot(ray.vector,ac))
-        C = np.dot(ac, ac) - self.rayon ** 2
-        delta = (B ** 2) - (4 * A * C)
-        #2 solutions
-        if delta > 0:
-        # Trouver la plus petite racine positive de l'équation quadratique
-            t1 = (-B - np.sqrt(delta)) / (2.0 * A)
-            t2 = (-B + np.sqrt(delta)) / (2.0 * A)
-            if t1 > 0 and t2 <=0 :
-                t = t1
-            elif t2 > 0 and t1 <0:
-                t = t2
-            elif t1 <= 0 and t2 <= 0:
+
+class Sphere(Objet):   
+    def __init__(self, pos:Point, r, clr:Couleur, amb=0, diff=0.7, spec=0.7, refl=0.3, shad=0):
+        Objet.__init__(self, pos, clr, amb, diff, spec, refl, shad)
+        self.radius = r
+
+    def intersection(self, d:Droite):
+        #  vecteur point droite -> sphere        
+        CP = Vecteur(d.point.x-self.position.x, 
+                     d.point.y-self.position.y,
+                     d.point.z-self.position.z)
+
+        #  calcul delta
+        a, b, c = 1, 2*dotprod(d.vect, CP), dotprod(CP, CP)-self.radius*self.radius
+        delta = (b*b)-(4*a*c)
+
+        #print(delta)
+        #  tests intersections
+        if delta>0: #  deux intersections
+            t = (-b-m.sqrt(delta))/2*a
+            
+        elif delta==0: #  une intersection
+            t = (-b)/(2*a)
+            if t<=0:
                 return None
-            else:
-                t=min(t1,t2)
-        #Une seule solution/droite tangente au cercle 
-        elif delta == 0: 
-            t = (-B)/(2*A)
-        #Aucune solution
-        else:
-            return 1
-        # Calculer le point d'intersection et le renvoyer
-        return ray.origin + t * ray.extremite
-    
+        else: #  pas d'intersection
+            return None
 
-    def normale(self, point):
-        # Implémentation de la méthode normale pour une sphère
-        # Retourne la normale à la surface de la sphère au point donné
-        return (point - self.position) / self.rayon
+        return d.get_point(t)
     
+    def normalVect(self, p:Point):
+        return Vecteur(p.x-self.position.x,
+                       p.y-self.position.y,
+                       p.z-self.position.z).normalize()
 
-pos_cam=(0,0,5)
-largeur,hauteur=10,10
-look_at=(0,0,0)
-orient=(0,1,0)
-camy = Camera(largeur,hauteur,pos_cam, look_at, orient,-5)
-print(camy.largeur,camy.hauteur,camy.position,camy.direction.vector,camy.orientation.vector,camy.df)
+
+if __name__ == "__main__":
+    S = Sphere(Point(0,0,0), 1, Couleur(1,1,1))
+    print(S.normalVect(Point(1,0,0)).array)
