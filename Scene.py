@@ -272,7 +272,8 @@ if __name__ == "__main__":
     #LEFT HAND 
     S1 = Sphere(Point(-20,0,0), 2, Couleur(1,0,0))
     S2 = Sphere(Point(-4,0,0), 2, Couleur(0,1,0)) 
-    S3 = Sphere(Point(4,0,0), 3, Couleur(0,0,1)) 
+    S3 = Sphere(Point(4,0,0), 3, Couleur(0,0,1))
+    S4 = Sphere(Point(0,0,-3), 2, Couleur(0,1,1)) 
 
     P1 = Plan(Point(0,-5,0), Vecteur(0,1,0), Couleur(1,1,1))
 
@@ -282,7 +283,7 @@ if __name__ == "__main__":
 
     cam = Camera(Point(0,3,10), 5,5, Point(0,0,0), 5)
 
-    main = Scene(cam, [S1,S3,S2,P1], [L1])
+    main = Scene(cam, [S1,S3,S2,S4,P1], [L1])
     main.Gen_img_rec(1024,1024)
     #main.create_image(256,256)
 
