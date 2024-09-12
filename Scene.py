@@ -284,7 +284,7 @@ if __name__ == "__main__":
     cam = Camera(Point(0,3,10), 5,5, Point(0,0,0), 5)
 
     main = Scene(cam, [S1,S3,S2,S4,P1], [L1])
-    main.Gen_img_rec(256,256)
+    main.Gen_img_rec(1028,1028)
     #main.create_image(256,256)
 
     #print("S1", S1)
