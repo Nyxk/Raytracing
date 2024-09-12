@@ -1,9 +1,9 @@
 
-from couleur import Couleur
+from Couleur import Couleur
 from droite import Droite
-from objet import Objet
+from Objet import Objet
 from point import Point
-from vecteur import Vecteur
+from Vecteur import Vecteur
 
 class Plan(Objet):
     def __init__(self, pos:Point, v:Vecteur, clr:Couleur, amb=0.1, diff=0, spec=0, refl=0, shad=0):

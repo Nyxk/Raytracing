@@ -2,15 +2,15 @@
 import numpy as np
 import math as m
 import time 
-from camera import Camera
-from couleur import Couleur, multcolor
+from Camera import Camera
+from Couleur import Couleur, multcolor
 from droite import Droite
-from lumiere import Lumiere
-from objet import Objet
-from plan import Plan
+from Lumiere import Lumiere
+from Objet import Objet
+from Plan import Plan
 from point import Point
-from sphere import Sphere
-from vecteur import Vecteur, dotprod
+from Sphere import Sphere
+from Vecteur import Vecteur, dotprod
 
 from PIL import Image
 
@@ -284,7 +284,7 @@ if __name__ == "__main__":
     cam = Camera(Point(0,3,10), 5,5, Point(0,0,0), 5)
 
     main = Scene(cam, [S1,S3,S2,S4,P1], [L1])
-    main.Gen_img_rec(1024,1024)
+    main.Gen_img_rec(256,256)
     #main.create_image(256,256)
 
     #print("S1", S1)

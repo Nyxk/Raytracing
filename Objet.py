@@ -1,8 +1,8 @@
 
-from couleur import Couleur
+from Couleur import Couleur
 from droite import Droite
 from point import Point
-from vecteur import Vecteur
+from Vecteur import Vecteur
 
 
 class Objet:

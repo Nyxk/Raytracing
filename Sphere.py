@@ -1,10 +1,10 @@
 import math as m
 import numpy as np
-from couleur import Couleur
+from Couleur import Couleur
 from droite import Droite
-from objet import Objet
+from Objet import Objet
 from point import Point
-from vecteur import Vecteur, dotprod
+from Vecteur import Vecteur, dotprod
 
 
 

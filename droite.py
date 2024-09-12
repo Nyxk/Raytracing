@@ -1,6 +1,6 @@
 
 from point import Point
-from vecteur import Vecteur
+from Vecteur import Vecteur
 
 class Droite:
     def __init__(self, pt:Point, v:Vecteur):

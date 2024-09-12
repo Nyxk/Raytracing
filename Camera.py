@@ -1,7 +1,7 @@
 
 from droite import Droite
 from point import Point
-from vecteur import Vecteur
+from Vecteur import Vecteur
 
 
 class Camera:

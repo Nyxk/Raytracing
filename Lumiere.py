@@ -1,6 +1,6 @@
 
 from point import Point
-from couleur import Couleur
+from Couleur import Couleur
 
 class Lumiere:
     def __init__(self, name, pos:Point, clr:Couleur):
